@@ -41,7 +41,7 @@ class App extends React.Component {
   handlerSearchByName(event) {
     const { value } = event.target;
     this.setState(prevState => {
-      console.log('click?');
+      //console.log('click?');
       return {
         //...prevState.searchNameValue,
         searchNameValue: value
@@ -74,7 +74,11 @@ class App extends React.Component {
           <Route
             path='/detail/:id'
             render={routerProps => (
-              <CardDetail match={routerProps.match} data={data} />
+              <CardDetail 
+                match={routerProps.match} 
+                data={data}
+                isLoading={isLoading}
+              />
             )}
           />
         </Switch>
