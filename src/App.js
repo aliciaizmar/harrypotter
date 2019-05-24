@@ -8,8 +8,9 @@ class App extends React.Component {
     this.state = {
       data: [],
       isLoading: true,
-      searchName: ''
+      searchNameValue: ''
     };
+    this.handlerSearchByName = this.handlerSearchByName.bind(this);
   }
   componentDidMount() {
     this.getUser();
@@ -23,8 +24,8 @@ class App extends React.Component {
           return {
             ...item,
             id: index + 1
-          }
-        })
+          };
+        });
         this.setState({
           //data: data,
           data: newData,
@@ -33,16 +34,33 @@ class App extends React.Component {
         //console.log('character:', data);
       });
   }
+  //los handlers al pasarlos van directamente, no estan en ele stado
+  handlerSearchByName(event) {
+    const { value } = event.target;
+    this.setState(prevState => {
+      console.log('click?');
+      return {
+        //...prevState.searchNameValue,
+        searchNameValue: value
+      };
+    });
+  }
 
   render() {
-    const { isLoading, data } = this.state;
-    //console.log('App: ', data)
+    const { isLoading, data, searchNameValue } = this.state;
+    //console.log('App: ', searchNameValue);
     return (
       <div className='App'>
-        <Home 
+        <Home
           isLoading={isLoading}
-          data={data}
-       />
+          data={data.filter(item => {
+            return item.name
+              .toLowerCase()
+              .includes(searchNameValue.toLowerCase());
+          })}
+          filterByName={this.handlerSearchByName}
+          searchNameValue={searchNameValue}
+        />
       </div>
     );
   }

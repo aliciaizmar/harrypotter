@@ -4,20 +4,27 @@ import Filters from './Filters';
 
 class Home extends React.Component {
   render() {
-    const { isLoading, data } = this.props;
-    //console.log('home: ', data);
+    const { isLoading, data, filterByName, searchNameValue } = this.props;
+    //console.log('home: ' , searchNameValue)
     return (
-      <div>
+      <Fragment>
         {isLoading ? (
-          <p>Cargando datos...</p>
+          <p>Wait, I'm loading...</p>
         ) : (
           <Fragment>
-            <h1>Harry Potter Characters</h1>
-            <Filters />
-            <List data={data} />
+            <nav className='main__header'>
+              <h1>Harry Potter Characters</h1>
+            </nav>
+            <main>
+              <Filters
+                filterByName={filterByName}
+                searchNameValue={searchNameValue}
+              />
+              <List data={data} />
+            </main>
           </Fragment>
         )}
-      </div>
+      </Fragment>
     );
   }
 }

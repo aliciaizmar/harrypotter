@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 class Filters extends React.Component {
   render() {
+    const { filterByName, searchNameValue } = this.props;
     return (
-      <div>
-        <form>
-            <label htmlFor="name">Filtrar por nombre </label>
-            <input id="name" />
+      <Fragment>
+        <form className='main__form'>
+          <label htmlFor='name'>Filtrar por nombre </label>
+          <input id='name' onChange={filterByName} value={searchNameValue} />
         </form>
-      </div>
+      </Fragment>
     );
   }
 }

@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import CardDetail from './CardDetail';
 
 class List extends React.Component {
   render() {
     const { data } = this.props;
-    //console.log('list: ', data);
+
     return (
-      <div>
+      <Fragment>
         <ul className='main__list'>
           {data.map((person, id) => {
             return (
@@ -23,7 +23,7 @@ class List extends React.Component {
           })}
         </ul>
         <CardDetail />
-      </div>
+      </Fragment>
     );
   }
 }
