@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './components/Home';
 import './App.css';
+import { Route, Switch } from 'react-router-dom';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,11 +22,13 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const newData = data.map((item, index) => {
+          //console.log(index);
           return {
             ...item,
             id: index + 1
           };
         });
+
         this.setState({
           //data: data,
           data: newData,
@@ -34,7 +37,6 @@ class App extends React.Component {
         //console.log('character:', data);
       });
   }
-  //los handlers al pasarlos van directamente, no estan en ele stado
   handlerSearchByName(event) {
     const { value } = event.target;
     this.setState(prevState => {
