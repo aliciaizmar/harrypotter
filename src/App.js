@@ -1,7 +1,8 @@
 import React from 'react';
 import Home from './components/Home';
-import './App.css';
+import CardDetail from './components/CardDetail';
 import { Route, Switch } from 'react-router-dom';
+import './App.css';
 
 class App extends React.Component {
   constructor(props) {
@@ -50,19 +51,33 @@ class App extends React.Component {
 
   render() {
     const { isLoading, data, searchNameValue } = this.state;
-    //console.log('App: ', searchNameValue);
     return (
       <div className='App'>
-        <Home
-          isLoading={isLoading}
-          data={data.filter(item => {
-            return item.name
-              .toLowerCase()
-              .includes(searchNameValue.toLowerCase());
-          })}
-          filterByName={this.handlerSearchByName}
-          searchNameValue={searchNameValue}
-        />
+        {/* el switch se oculta, no se muestra en el html, por eso puedo meter aquí el CardDetail */}
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={() => (
+              <Home
+                isLoading={isLoading}
+                data={data.filter(item => {
+                  return item.name
+                    .toLowerCase()
+                    .includes(searchNameValue.toLowerCase());
+                })}
+                filterByName={this.handlerSearchByName}
+                searchNameValue={searchNameValue}
+              />
+            )}
+          />
+          <Route
+            path='/detail/:id'
+            render={routerProps => (
+              <CardDetail match={routerProps.match} data={data} />
+            )}
+          />
+        </Switch>
       </div>
     );
   }

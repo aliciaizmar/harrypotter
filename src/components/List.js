@@ -1,23 +1,25 @@
 import React, { Fragment } from 'react';
-import CardDetail from './CardDetail';
 import { Link } from 'react-router-dom';
 
 class List extends React.Component {
   render() {
-    const { data } = this.props;
+    const { data} = this.props;
     return (
       <Fragment>
         <ul className='main__list'>
           {data.map((person, id) => {
             return (
-              <li className='list__li' key={id} id={id}>
+              <li className='list__li' key={id}>
                 <Link to={`/detail/${person.id}`}>
-                  <CardDetail
+                  <img
+                    className='list__img'
                     src={person.image}
                     alt={person.name}
-                    name={person.name}
-                    house={person.house}
                   />
+                  <h2 className='list__name'>{person.name}</h2>
+                  <h3 className='list__house'>
+                    {person.house ? person.house : 'Where is my home?'}
+                  </h3>
                 </Link>
               </li>
             );

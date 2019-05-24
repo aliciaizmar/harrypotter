@@ -6,6 +6,9 @@ ul,
 li {
   list-style: none;
 }
+a {
+  display: block;
+}
 .main__list {
   display: flex;
   flex-wrap: wrap;

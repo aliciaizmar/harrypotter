@@ -4,8 +4,8 @@ import Filters from './Filters';
 
 class Home extends React.Component {
   render() {
-    const { isLoading, data, filterByName, searchNameValue } = this.props;
-    //console.log('home: ' , searchNameValue)
+    const { isLoading, data, filterByName, searchNameValue, match } = this.props;
+    //console.log('home: ', match)
     return (
       <Fragment>
         {isLoading ? (
@@ -20,7 +20,10 @@ class Home extends React.Component {
                 filterByName={filterByName}
                 searchNameValue={searchNameValue}
               />
-              <List data={data} />
+              <List 
+                data={data}
+                match={match}
+               />
             </main>
           </Fragment>
         )}

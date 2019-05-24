@@ -1,18 +1,35 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
 class CardDetail extends React.Component {
   render() {
-    const { src, name, house } = this.props;
-    //console.log('filter: ', src)
+    // const { src, name, house, match, data } = this.props;
+    const {match, data } = this.props;
+    const { id } = match.params;
+    const detail = data[id];
     return (
       <Fragment>
-        <img
-          className='list__img'
-          src={src}
-          alt={name}
-        />
-        <h2 className="list__name">{name}</h2>
-        <h3 className ="list__house">{house ? (house) : ("Where is my home?")}</h3>
+        <div>
+          <Link to='/'>
+            <ul>
+              <li>Atrás</li>
+            </ul>
+          </Link>
+        </div>
+        <img className='list__img' src={detail.image} alt={detail.name} />
+        <div>
+          <h2 className='list__name'>{detail.name}</h2>
+          <ul>
+            <li className='list__house'>
+              Casa: Casa: {detail.house ? detail.house : 'Where is my home?'}
+            </li>
+            <li>
+              Nacimiento: {detail.yearOfBirth ? detail.yearOfBirth : '??'}
+            </li>
+            <li>Patronus: {detail.patronus}</li>
+            <li>Estado: {detail.alive} </li>
+          </ul>
+        </div>
       </Fragment>
     );
   }
