@@ -23,10 +23,10 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const newData = data.map((item, index) => {
-          //console.log(index);
+          console.log(item.name, item.alive);
           return {
             ...item,
-            id: index + 1
+            id: index
           };
         });
 
@@ -41,7 +41,6 @@ class App extends React.Component {
   handlerSearchByName(event) {
     const { value } = event.target;
     this.setState(prevState => {
-      //console.log('click?');
       return {
         //...prevState.searchNameValue,
         searchNameValue: value

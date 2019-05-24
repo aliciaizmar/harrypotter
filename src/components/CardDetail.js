@@ -26,14 +26,13 @@ class CardDetail extends React.Component {
               <h2 className='list__name'>{detail.name}</h2>
               <ul>
                 <li className='list__house'>
-                  Casa: Casa:{' '}
-                  {detail.house ? detail.house : 'Where is my home?'}
+                  Casa: Casa:{detail.house ? detail.house : 'Where is my home?'}
                 </li>
                 <li>
                   Nacimiento: {detail.yearOfBirth ? detail.yearOfBirth : '??'}
                 </li>
                 <li>Patronus: {detail.patronus}</li>
-                <li>Estado: {detail.alive} </li>
+                <li>Estado: {detail.alive ? 'ALIVE' : 'DEAD'} </li>
               </ul>
             </div>
           )}
