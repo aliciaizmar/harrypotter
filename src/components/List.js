@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import './List.scss';
 
 class List extends React.Component {
   render() {
     const { data, isLoading } = this.props;
-    console.log('list:', isLoading);
+    //console.log('list:', isLoading);
     return (
       <Fragment>
         <ul className='main__list'>
@@ -15,15 +16,19 @@ class List extends React.Component {
               return (
                 <li className='list__li' key={id}>
                   <Link to={`/detail/${person.id}`}>
-                    <img
-                      className='list__img'
-                      src={person.image}
-                      alt={person.name}
-                    />
-                    <h2 className='list__name'>{person.name}</h2>
-                    <h3 className='list__house'>
-                      {person.house ? person.house : 'Where is my home?'}
-                    </h3>
+                    <div className='list__img--content'>
+                      <img
+                        className='list__img--list'
+                        src={person.image}
+                        alt={person.name}
+                      />
+                    </div>
+                    <div className="list__info--content">
+                      <h2 className='list__name'>{person.name}</h2>
+                      <h3 className='list__house'>
+                        {person.house ? person.house : 'Where is my home?'}
+                      </h3>
+                    </div>
                   </Link>
                 </li>
               );

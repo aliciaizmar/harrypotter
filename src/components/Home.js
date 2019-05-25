@@ -5,7 +5,7 @@ import Filters from './Filters';
 class Home extends React.Component {
   render() {
     const { isLoading, data, filterByName, searchNameValue, match } = this.props;
-    console.log('home: ', isLoading)
+    //console.log('home: ', isLoading)
     return (
       <Fragment>
         {isLoading ? (

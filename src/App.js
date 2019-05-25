@@ -2,7 +2,7 @@ import React from 'react';
 import Home from './components/Home';
 import CardDetail from './components/CardDetail';
 import { Route, Switch } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,7 +23,7 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const newData = data.map((item, index) => {
-          console.log(item.name, item.alive);
+          //console.log(item.name, item.alive);
           return {
             ...item,
             id: index

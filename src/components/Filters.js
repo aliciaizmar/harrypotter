@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import './Filters.scss';
 
 class Filters extends React.Component {
   render() {
@@ -6,8 +7,8 @@ class Filters extends React.Component {
     return (
       <Fragment>
         <form className='main__form'>
-          <label htmlFor='name'>Filtrar por nombre </label>
-          <input id='name' onChange={filterByName} value={searchNameValue} />
+          <label htmlFor='name' className="hidden">Filtrar por nombre </label>
+          <input className="form__input" id='name' onChange={filterByName} value={searchNameValue} placeholder="Filtrar por nombre" />
         </form>
       </Fragment>
     );
