@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { FaRegSadCry, FaRegSmileBeam } from 'react-icons/fa';
+import PropTypes from 'prop-types';
+import { FaRegSadCry, FaRegSmileBeam, FaAngleLeft } from 'react-icons/fa';
 import './CardDetail.scss';
 
 class CardDetail extends React.Component {
@@ -18,7 +19,7 @@ class CardDetail extends React.Component {
           <Fragment>
             <Link to='/' className='back__link'>
               <div>
-                <span> -- Back to Characters</span>
+                <span> <FaAngleLeft className="icon" /> Back to Characters</span>
               </div>
             </Link>
 
@@ -47,7 +48,8 @@ class CardDetail extends React.Component {
                   </li>
                   <li>
                     Estado:
-                    {person.alive ? (
+                    {person.alive 
+                    ? (
                       <FaRegSmileBeam className='icon' title='Alive' />
                     ) : (
                       <FaRegSadCry className='icon' title='Dead' />
@@ -68,5 +70,11 @@ class CardDetail extends React.Component {
     );
   }
 }
+
+CardDetail.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired
+};
 
 export default CardDetail;

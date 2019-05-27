@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import './Filters.scss';
 
 class Filters extends React.Component {
@@ -14,5 +15,10 @@ class Filters extends React.Component {
     );
   }
 }
+
+Filters.propTypes = {
+  filterByName: PropTypes.func.isRequired, 
+  searchNameValue: PropTypes.string.isRequired, 
+};
 
 export default Filters;

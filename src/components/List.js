@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './List.scss';
 
 class List extends React.Component {
@@ -35,5 +36,9 @@ class List extends React.Component {
     );
   }
 }
+
+List.propTypes = {
+  data: PropTypes.array.isRequired, 
+};
 
 export default List;

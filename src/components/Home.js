@@ -35,7 +35,10 @@ class Home extends React.Component {
 }
 
 Home.propTypes = {
-  isLoading: PropTypes.bool,
+  isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.array.isRequired, 
+  filterByName: PropTypes.func.isRequired, 
+  searchNameValue: PropTypes.string.isRequired, 
 };
 
 export default Home;
