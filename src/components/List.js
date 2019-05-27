@@ -26,6 +26,7 @@ class List extends React.Component {
                     <h3 className='list__house'>
                       {person.house ? person.house : 'Where is my home?'}
                     </h3>
+                    <h4>Patronus: {person.patronus ? person.patronus : 'No patronus'}</h4>
                   </div>
                 </Link>
               </li>

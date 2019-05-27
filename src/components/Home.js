@@ -6,8 +6,8 @@ import './Home.scss';
 
 class Home extends React.Component {
   render() {
-    const { isLoading, data, filterByName, searchNameValue, filterByHouse, filterByGender, houses, gender, match } = this.props;
-    //console.log('home:', gender)
+    const { isLoading, data, filterByName, searchNameValue, filterByHouse, filterByGender, houses, gender, match, searchByPatronus, filterByPatronus } = this.props;
+    console.log('home:', searchByPatronus)
 
     return (
       <Fragment>
@@ -27,6 +27,8 @@ class Home extends React.Component {
                 data={data}
                 houses={houses}
                 gender={gender}
+                searchByPatronus={searchByPatronus}
+                filterByPatronus={filterByPatronus}
               />
               <List 
                 data={data}

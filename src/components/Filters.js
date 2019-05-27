@@ -10,9 +10,11 @@ class Filters extends React.Component {
       filterByHouse,
       houses,
       gender,
-      filterByGender
+      filterByGender,
+      filterByPatronus,
+      searchByPatronus
     } = this.props;
-    //console.log('filter:', gender);
+    console.log('filter:', searchByPatronus);
     return (
       <Fragment>
         <form className='main__form'>
@@ -25,6 +27,17 @@ class Filters extends React.Component {
             onChange={filterByName}
             value={searchNameValue}
             placeholder='Filtrar por nombre'
+          />
+
+          <label htmlFor='name' className='hidden'>
+            Filtrar por patronus
+          </label>
+          <input
+            className='form__input'
+            id='name'
+            onChange={filterByPatronus}
+            value={searchByPatronus}
+            placeholder='Filtrar por patronus'
           />
 
           <span className='dis-block'>Filtrar por casas </span>
