@@ -13,6 +13,8 @@ class App extends React.Component {
       searchNameValue: ''
     };
     this.handlerSearchByName = this.handlerSearchByName.bind(this);
+    this.resetFilter = this.resetFilter.bind(this);
+    this.filterInput = this.filterInput.bind(this);
   }
   componentDidMount() {
     this.getUser();
@@ -23,7 +25,6 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const newData = data.map((item, index) => {
-          //console.log(item.name, item.alive);
           return {
             ...item,
             id: index
@@ -35,9 +36,9 @@ class App extends React.Component {
           data: newData,
           isLoading: false
         });
-        //console.log('character:', data);
       });
   }
+
   handlerSearchByName(event) {
     const { value } = event.target;
     this.setState(prevState => {
@@ -48,15 +49,23 @@ class App extends React.Component {
     });
   }
 
-  // filterInput() {    
-  //   const myInputData = data.filter(item => {
-  //       return item.name
-  //         .toLowerCase()
-  //         .includes(searchNameValue.toLowerCase());
-  //     })
-  //     return myInputData;
-  // }
- 
+  filterInput() {
+    const { data, searchNameValue } = this.state;    
+      return (
+        data.filter(item => {
+          return item.name
+            .toLowerCase()
+            .includes(searchNameValue.toLowerCase());
+        })
+      );
+  }
+
+  resetFilter() {
+    this.setState({
+      searchNameValue: ''
+    });
+  }
+
   render() {
     const { isLoading, data, searchNameValue } = this.state;
     return (
@@ -69,11 +78,12 @@ class App extends React.Component {
             render={() => (
               <Home
                 isLoading={isLoading}
-                data={data.filter(item => {
-                  return item.name
-                    .toLowerCase()
-                    .includes(searchNameValue.toLowerCase());
-                })}
+                // // data={data.filter(item => {
+                // //   return item.name
+                // //     .toLowerCase()
+                // //     .includes(searchNameValue.toLowerCase());
+                // // })}
+                data={this.filterInput()}
                 filterByName={this.handlerSearchByName}
                 searchNameValue={searchNameValue}
               />
@@ -82,10 +92,11 @@ class App extends React.Component {
           <Route
             path='/detail/:id'
             render={routerProps => (
-              <CardDetail 
-                match={routerProps.match} 
+              <CardDetail
+                match={routerProps.match}
                 data={data}
                 isLoading={isLoading}
+                resetFilter={this.resetFilter}
               />
             )}
           />

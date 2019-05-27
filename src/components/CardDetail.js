@@ -5,6 +5,11 @@ import { FaRegSadCry, FaRegSmileBeam, FaAngleLeft } from 'react-icons/fa';
 import './CardDetail.scss';
 
 class CardDetail extends React.Component {
+
+  componentWillUnmount(){
+    this.props.resetFilter();
+  }
+
   render() {
     // const { src, name, house, match, data } = this.props;
     const { match, data, isLoading } = this.props;
@@ -13,7 +18,7 @@ class CardDetail extends React.Component {
     const person = data[id];
 
     if (isLoading) {
-      return <p>Wait, I'm loading...</p>;
+      return <p className="text-center">Wait, I'm loading...</p>;
     }
     return (
       <div className='myCard'>
