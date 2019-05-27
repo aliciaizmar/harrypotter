@@ -58,7 +58,11 @@ class CardDetail extends React.Component {
             </div>
           </Fragment>
         ) : (
-          <p>...</p>
+          <Fragment>
+            {isLoading 
+            ? (<p>Wait, I'm loading...</p>) 
+            : (<p>User doesn't exists</p>)}            
+          </Fragment>
         )}
       </div>
     );

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import List from './List';
 import Filters from './Filters';
 
@@ -32,5 +33,9 @@ class Home extends React.Component {
     );
   }
 }
+
+Home.propTypes = {
+  isLoading: PropTypes.bool,
+};
 
 export default Home;
