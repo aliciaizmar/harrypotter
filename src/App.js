@@ -47,6 +47,15 @@ class App extends React.Component {
       };
     });
   }
+
+  // filterInput() {    
+  //   const myInputData = data.filter(item => {
+  //       return item.name
+  //         .toLowerCase()
+  //         .includes(searchNameValue.toLowerCase());
+  //     })
+  //     return myInputData;
+  // }
  
   render() {
     const { isLoading, data, searchNameValue } = this.state;

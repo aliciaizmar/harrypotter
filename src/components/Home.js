@@ -2,15 +2,16 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import List from './List';
 import Filters from './Filters';
+import './Home.scss';
 
 class Home extends React.Component {
   render() {
     const { isLoading, data, filterByName, searchNameValue, match } = this.props;
-    //console.log('home: ', isLoading)
+
     return (
       <Fragment>
         {isLoading ? (
-          <p>Wait, I'm loading...</p>
+          <p className="text-center">Wait, I'm loading...</p>
         ) : (
           <Fragment>
             <nav className='main__header'>
