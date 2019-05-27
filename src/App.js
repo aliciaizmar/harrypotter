@@ -10,9 +10,13 @@ class App extends React.Component {
     this.state = {
       data: [],
       isLoading: true,
-      searchNameValue: ''
+      searchNameValue: '',
+      houses: [],
+      gender: ''
     };
     this.handlerSearchByName = this.handlerSearchByName.bind(this);
+    this.handlerSearchByHouse = this.handlerSearchByHouse.bind(this);
+    this.handlerSearchByGender = this.handlerSearchByGender.bind(this);
     this.resetFilter = this.resetFilter.bind(this);
     this.filterInput = this.filterInput.bind(this);
   }
@@ -31,10 +35,13 @@ class App extends React.Component {
           };
         });
 
-        this.setState({
-          //data: data,
-          data: newData,
-          isLoading: false
+        this.setState(prevState => {
+          return {
+            //data: data,
+            ...prevState,
+            data: newData,
+            isLoading: false
+          };
         });
       });
   }
@@ -43,21 +50,58 @@ class App extends React.Component {
     const { value } = event.target;
     this.setState(prevState => {
       return {
-        //...prevState.searchNameValue,
+        ...prevState,
         searchNameValue: value
       };
     });
   }
 
+  handlerSearchByHouse(event) {
+    const key = event.target.name;
+    this.setState(prevState => {
+      return {
+        ...prevState,
+        houses: prevState.houses.find(house => house === key)
+          ? prevState.houses.filter(house => house !== key)
+          : prevState.houses.concat(key)
+      };
+    });
+  }
+
+  handlerSearchByGender(event) {
+    const { value } = event.target;
+    console.log('clisck');
+    this.setState(prevState => {
+      console.log('clisck');
+      return {
+        ...prevState,
+        gender: value
+      };
+    });
+  }
+
   filterInput() {
-    const { data, searchNameValue } = this.state;    
-      return (
-        data.filter(item => {
-          return item.name
-            .toLowerCase()
-            .includes(searchNameValue.toLowerCase());
-        })
-      );
+    const { data, houses, searchNameValue, gender } = this.state;
+    console.log('app:', gender);
+    return data
+      .filter(item => {
+        return item.name.toLowerCase().includes(searchNameValue.toLowerCase());
+      })
+      .filter(item => {
+        // if (!houses.length) {
+        //   return true;
+        // } else {
+        //   return houses.includes(item.house);
+        // }
+        return !houses.length ? houses : houses.includes(item.house);
+      })
+      .filter(item => {
+        console.log('input', item.gender)
+        return (
+          item.gender.includes(gender)
+        )
+      })
+      ;
   }
 
   resetFilter() {
@@ -67,7 +111,8 @@ class App extends React.Component {
   }
 
   render() {
-    const { isLoading, data, searchNameValue } = this.state;
+    const { isLoading, data, searchNameValue, houses, gender } = this.state;
+    console.log('app:', gender);
     return (
       <div className='App'>
         {/* el switch se oculta, no se muestra en el html, por eso puedo meter aquí el CardDetail */}
@@ -78,14 +123,13 @@ class App extends React.Component {
             render={() => (
               <Home
                 isLoading={isLoading}
-                // // data={data.filter(item => {
-                // //   return item.name
-                // //     .toLowerCase()
-                // //     .includes(searchNameValue.toLowerCase());
-                // // })}
                 data={this.filterInput()}
                 filterByName={this.handlerSearchByName}
+                filterByHouse={this.handlerSearchByHouse}
+                filterByGender={this.handlerSearchByGender}
                 searchNameValue={searchNameValue}
+                houses={houses}
+                gender={gender}
               />
             )}
           />
