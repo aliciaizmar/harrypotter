@@ -23,7 +23,6 @@ class App extends React.Component {
       .then(response => response.json())
       .then(data => {
         const newData = data.map((item, index) => {
-          //console.log(item.name, item.alive);
           return {
             ...item,
             id: index
@@ -35,9 +34,9 @@ class App extends React.Component {
           data: newData,
           isLoading: false
         });
-        //console.log('character:', data);
       });
   }
+
   handlerSearchByName(event) {
     const { value } = event.target;
     this.setState(prevState => {
@@ -48,20 +47,10 @@ class App extends React.Component {
     });
   }
 
-  // filterInput() {    
-  //   const myInputData = data.filter(item => {
-  //       return item.name
-  //         .toLowerCase()
-  //         .includes(searchNameValue.toLowerCase());
-  //     })
-  //     return myInputData;
-  // }
- 
   render() {
     const { isLoading, data, searchNameValue } = this.state;
     return (
       <div className='App'>
-        {/* el switch se oculta, no se muestra en el html, por eso puedo meter aquí el CardDetail */}
         <Switch>
           <Route
             exact
@@ -82,8 +71,8 @@ class App extends React.Component {
           <Route
             path='/detail/:id'
             render={routerProps => (
-              <CardDetail 
-                match={routerProps.match} 
+              <CardDetail
+                match={routerProps.match}
                 data={data}
                 isLoading={isLoading}
               />
