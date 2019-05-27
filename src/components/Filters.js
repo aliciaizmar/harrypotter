@@ -12,7 +12,7 @@ class Filters extends React.Component {
       gender,
       filterByGender
     } = this.props;
-    console.log('filter:', gender);
+    //console.log('filter:', gender);
     return (
       <Fragment>
         <form className='main__form'>

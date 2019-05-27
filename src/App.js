@@ -70,9 +70,9 @@ class App extends React.Component {
 
   handlerSearchByGender(event) {
     const { value } = event.target;
-    console.log('clisck');
+    console.log(value);
     this.setState(prevState => {
-      console.log('clisck');
+      //console.log(key);
       return {
         ...prevState,
         gender: value
@@ -82,7 +82,7 @@ class App extends React.Component {
 
   filterInput() {
     const { data, houses, searchNameValue, gender } = this.state;
-    console.log('app:', gender);
+    //console.log('app:', gender);
     return data
       .filter(item => {
         return item.name.toLowerCase().includes(searchNameValue.toLowerCase());
@@ -96,12 +96,15 @@ class App extends React.Component {
         return !houses.length ? houses : houses.includes(item.house);
       })
       .filter(item => {
-        console.log('input', item.gender)
-        return (
+        console.log('itemGender', gender);
+        if (!gender || gender.includes('all')) {
+          return true;
+        } else if (
           item.gender.includes(gender)
-        )
-      })
-      ;
+        ) {
+          return gender.includes(item.gender);
+        }
+      });
   }
 
   resetFilter() {
@@ -112,7 +115,7 @@ class App extends React.Component {
 
   render() {
     const { isLoading, data, searchNameValue, houses, gender } = this.state;
-    console.log('app:', gender);
+    //console.log('app:', gender);
     return (
       <div className='App'>
         {/* el switch se oculta, no se muestra en el html, por eso puedo meter aquí el CardDetail */}
