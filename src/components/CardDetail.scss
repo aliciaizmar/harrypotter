@@ -19,6 +19,7 @@
   }
   &__detail {
     padding: 20px;
+    background: #8d2222;
   }
   &__img--content {
     width: 100%;
@@ -35,6 +36,11 @@
 .back__link {
   color: #5e0707;
   text-align: center;
+}
+.icon {
+  width: 40px;
+  height: 20px;
+  vertical-align: middle;
 }
 @media all and (min-width: 768px) {
   .myCard {

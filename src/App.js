@@ -47,7 +47,7 @@ class App extends React.Component {
       };
     });
   }
-
+ 
   render() {
     const { isLoading, data, searchNameValue } = this.state;
     return (
