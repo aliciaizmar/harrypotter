@@ -12,7 +12,7 @@ To run the project:
 `npm start`
 
 Project production link:
-http://beta.adalab.es/f-m3-evaluacion-final-younglust/
+Coming soon...
 
 ## License
 This project is under the MIT License
